@@ -33,17 +33,27 @@ export class ResponseTableComponent implements OnInit {
   lat: any = 28.6226475;
   lng: any = 77.24714399999999;
   mapSrc: any;
+  headerMinusOne: any = [];
 
   constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer) {
 
     this.sub = this.projectService.emitFormResponse.subscribe(res=>{
       console.log(res);
       this.response = res;
+
+      // this.projectService.sendSocketMessage('form');
+
+      // this.projectService.connectSocket(this.formId);
+      // this.projectService.openSocket();
+      // this.projectService.messageSocket();
+
     });
 
     this.sub1 = this.projectService.emitTableHeader.subscribe(res=>{
       console.log(res);
       this.header = res;
+      this.headerMinusOne = new Array(this.header.length-1);
+      console.log(this.headerMinusOne);
       this.flag = true;
       this.display();
     });
@@ -65,6 +75,13 @@ export class ResponseTableComponent implements OnInit {
   display() {
     if(this.flag) {
       $(document).ready(function() {
+
+        // Setup - add a text input to each footer cell
+        $('#exampleFormResponse tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Version '+title+'" />' );
+        } );
+
         $("#exampleFormResponse").DataTable({
           aaSorting: [],
           responsive: true,
@@ -73,6 +90,20 @@ export class ResponseTableComponent implements OnInit {
               'csv', 'pdf',
           ]
         });
+
+        var table = $('#exampleFormResponse').DataTable();
+
+        table.columns().every( function () {
+            var that = this;
+
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
 
         // Image Roation
         var rotation = 0;

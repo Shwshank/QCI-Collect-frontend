@@ -50,12 +50,25 @@ $bb-light:1px solid #ddd;
 
 $top-menu-height:47px;
 
+  tfoot input {
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+  // tfoot {
+  //       display: table-header-group;
+  //   }
+
+  table.dataTable tfoot th, table.dataTable tfoot td{
+    border: 0px !important;
+  }
 
 ss-multiselect-dropdown div ul li .dropdown-item.active, ss-multiselect-dropdown div ul li .dropdown-item:active , ss-multiselect-dropdown div ul li .dropdown-item:focus {
     color: #fff;
     text-decoration: none;
     background-color: #acd8ff !important;
 }
+
 
 
 /*Common css*/

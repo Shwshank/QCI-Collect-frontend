@@ -2,11 +2,60 @@ import { EventEmitter, Injectable, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from './APIService';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import * as io from 'socket.io-client';
 
 @Injectable()
 export class ProjectService {
 
+  private socket;
+  ws: any;
+  data: any;
+
+  emitWsMsg = new EventEmitter<any>();
+
   constructor(private apiService: APIService, private router: Router ) {}
+
+    connectSocket(formId: any) {
+      this.ws = new WebSocket(this.apiService.responseSocketURL+'/form/' + formId);
+    }
+
+    openSocket() {
+        this.ws.onopen = function(evt) {
+          console.log("***Connection Opened***");
+        };
+      }
+
+    messageSocket() {
+        this.ws.onmessage = function(evt) {
+          console.log("Total Responses: " + evt.data)
+          this.data = evt.data;
+        };
+        console.log(this.data);
+        this.emitWsMsg.emit(""+this.data);
+      }
+
+  // sendSocketMessage(message){
+  //
+  //   this.socket = io(this.apiService.responseSocketURL);
+  //   this.socket.emit('add-message', message);
+  // }
+  //
+  // getSocketMessages() {
+  //
+  //
+  //   let observable = new Observable(observer => {
+  //     this.socket = io(this.apiService.responseSocketURL);
+  //     this.socket.on('message', (data) => {
+  //       observer.next(data);
+  //     });
+  //     return () => {
+  //       this.socket.disconnect();
+  //     };
+  //   })
+  //   return observable;
+  // }
 
   cid() {
     let d = new Date();
