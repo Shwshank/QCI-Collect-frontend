@@ -17,15 +17,14 @@ $primary-color-light:#2295f8;
 $primary-color:#0275d8;
 $primary-color-dark:#0265c8;
 $primary-color-dark-hover:#0255b8;
-$secondary-color:#ffd741;
-$secondary-color-border:#efc731;
-$secondary-color-hover:#efc731;
-$secondary-color-border-hover:#dfb721;
+$secondary-color:#284e71;
+$secondary-color-border:#284e71;
+$secondary-color-hover:#6dbad4;
+$secondary-color-border-hover:#6dbad4;
 $body-bg1:#eeeeef;
 $body-bg2:#fff;
 $cont-bg1:#e4e5f1;
 $div-height:95vh;
-
 
 $col-1:8.33%;
 $col-2:16.67%;
@@ -49,6 +48,18 @@ $bl-light:1px solid #ddd;
 $bb-light:1px solid #ddd;
 
 $top-menu-height:47px;
+
+button{
+  color: white !important;
+}
+
+button:hover {
+  color:#284e71 !important;
+}
+
+.bg-primary{
+  background-color: $secondary-color !important;
+}
 
   tfoot input {
         width: 50%;
@@ -203,7 +214,7 @@ body
 .navbar-toggleable-md .fa-bars.text-white,
 .navbar-toggleable-md .fa-times.text-white,
 {
-  background:$primary-color-dark;
+  background:$secondary-color;
   font-size:24px;
   text-shadow:1px 1px 1px #555;
   display:none;
@@ -218,7 +229,7 @@ body
 }
 .navbar-toggleable-md .fa.active:hover
 {
-  background:$primary-color-dark-hover;
+  background:$secondary-color;
 } /*Hamburger Menu Ends*/
 .fa-sign-out:hover {
   color:$red-hover;

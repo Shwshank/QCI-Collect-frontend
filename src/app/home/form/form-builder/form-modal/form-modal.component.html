@@ -454,10 +454,21 @@
                     </div>
 
 
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Checked seperated by comas ','</label>
+                    <!-- <label for="staticEmail" class="col-sm-4 col-form-label">Checked seperated by comas ','</label>
                     <div class="col-8">
                       <textarea class="form-control form-control-sm" rows='2' placeholder="" [(ngModel)]='values' > </textarea>
+                    </div> -->
+
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Checked values</label>
+                    <br>
+                    <div *ngFor='let opt of optionArray; let i=i' >
+                      <label class = "">
+
+                         <input #flag type = "checkbox"  name="checkbox" value={{opt}} (change)='getVal1(flag.checked,opt)' >
+                         <span class = "mdl-checkbox__label"> {{opt}} &nbsp; &nbsp; </span>
+                      </label>
                     </div>
+
 
                   </div>
 

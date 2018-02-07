@@ -79,6 +79,37 @@ export class FormModalComponent implements OnInit {
 
   }
 
+  getVal1(flag, opt) {
+
+    let temp = 0;
+    let pos = 0;
+    if(flag) {
+
+      for(let i=0; i<= this.values.length; i++) {
+        if(this.values[i] == opt) {
+          temp = 1;
+        }
+      }
+
+      if(temp == 0) {
+        this.values.push(opt);
+      }
+
+      // console.log(this.resultArray);
+    } else {
+
+      for(let i=0; i<= this.values.length; i++) {
+        if(this.values[i] == opt) {
+          pos = i;
+          break;
+        }
+      }
+
+      this.values.splice(pos,1);
+    }
+    console.log(this.values);
+  }
+
   getVal(flag, opt) {
     let temp = 0;
     let pos = 0;
@@ -133,7 +164,7 @@ export class FormModalComponent implements OnInit {
     if(this.json.type === "checkbox" ) {
 
       if(this.values!=[] && this.values!=""){
-        this.json.values = this.values.split(',');
+        this.json.values = this.values;
         this.json.value = this.json.values;
       }
       // if(this.option!=[] && this.option!="") {
