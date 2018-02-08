@@ -10,7 +10,8 @@
 
 /*variables*/
 $brand-primary:red;
-$text-color-darkset3:#525351;
+$text-color-darkset2:#FFF;
+$text-color-darkset3:#141415;
 $text-color-darkset3-hover:#424341;
 $red-hover: #c9433f !important;
 $primary-color-light:#2295f8;
@@ -22,9 +23,10 @@ $secondary-color-border:#284e71;
 $secondary-color-hover:#6dbad4;
 $secondary-color-border-hover:#6dbad4;
 $body-bg1:#eeeeef;
-$body-bg2:#fff;
+$body-bg2:#386383;
 $cont-bg1:#e4e5f1;
 $div-height:95vh;
+$light-blue: #94cbdb;
 
 $col-1:8.33%;
 $col-2:16.67%;
@@ -39,7 +41,6 @@ $col-10:83.33%;
 $col-11:91.67%;
 $col-12:100%;
 
-
 $float-left:float-left;
 
 $bt-light:1px solid #ddd;
@@ -48,6 +49,10 @@ $bl-light:1px solid #ddd;
 $bb-light:1px solid #ddd;
 
 $top-menu-height:47px;
+
+body{
+  font-size: 600 !important
+}
 
 button{
   color: white !important;
@@ -120,23 +125,24 @@ body
 ::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-	background-color: #F5F5F5;
+	background-color: #ebf5f2;
 	border-radius: 0px;
 }
 ::-webkit-scrollbar
 {
-	width: 7px;
+	width: 8px;
 	background-color: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb
 {
-	border-radius:0px;
+	border: 1px solid #386383;
 	background-color:#FFF;
-	background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #999 ));/* 24a1b5 : 28b6cc */
+	background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( gray ), to( #386383 ), color-stop( .6, #888 ));/* 24a1b5 : 28b6cc */
 }
 ::-webkit-scrollbar-thumb:hover
 {
-  background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
+  background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( gray ), to( #386383 ), color-stop( .6, #888 ));/* 24a1b5 : 28b6cc */
+  // background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
   cursor:pointer;
 }
 .btn
@@ -171,20 +177,24 @@ body
 .cbx
 {
   box-shadow: 0px 2px 2px #ccc;
-  @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#fefefe, #f8f8f8);
-  background:-webkit-linear-gradient(#fefefe, #f8f8f8);
-  background:-moz-linear-gradient(#fefefe, #f8f8f8);
-  background:-ms-linear-gradient(#fefefe, #f8f8f8);
+  @include transition(all 0.45s linear .04s);
+  background:linear-gradient(to left,$light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF);
+  background:-webkit-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-moz-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-ms-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  border:3px solid $body-bg2;
+  border-radius: 5px;
 }
 .cbx:hover
 {
   box-shadow:none;
-  @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#f8f8f8, #fefefe);
-  background:-webkit-linear-gradient(#f8f8f8, #fefefe);
-  background:-moz-linear-gradient(#f8f8f8, #fefefe);
-  background:-ms-linear-gradient(#f8f8f8, #fefefe);
+  @include transition(all 0.45s linear .04s);
+  background:linear-gradient(to left,$light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF,$light-blue);
+  background:-webkit-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-moz-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-ms-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  border:3px solid $body-bg2;
+  border-radius: 5px;
 }
 .pos-bl
 {
@@ -193,7 +203,7 @@ body
   left:0;
   width:16.667%;
   font-size:10px;
-  color:#656565;
+  color:$text-color-darkset2;
   @include transition(all 0.15s linear .01s);
 }
 
@@ -238,7 +248,8 @@ body
 /*Navigation Left*/
 .slider-fix
 {
-  background-color:$body-bg2;
+  // background-color:$body-bg2;
+  background:linear-gradient(to bottom,$body-bg2, #bac9d4);
   //border-right:$br-light;
   position:fixed;
   top:$top-menu-height;
@@ -284,20 +295,20 @@ ul.nav.flex-column
 }
 .slider-fix a.nav-link
 {
-  border-top:3px solid #fff;
-  border-bottom:1px solid #ccc;
+  // border-top:3px solid #fff;
+  // border-bottom:1px solid #ccc;
   @include transition(all 0.15s linear .01s);
-  color:$text-color-darkset3;
+  color:$text-color-darkset2;
   padding:1em;
   text-transform:capitalize;
 }
 .slider-fix a.nav-link:hover
 {
-  border-top:2px solid #fff;
-  border-bottom:2px solid #ccc;
+  // border-top:2px solid #fff;
+  // border-bottom:2px solid #ccc;
   @include transition( all 0.15s linear .01s );
-  color:$primary-color;
-  background: rgba(0,0,0,0.02);
+  color:$secondary-color;
+  background: $text-color-darkset2;
 }
 .fa-6
 {
@@ -342,16 +353,19 @@ ul.nav.flex-column
 }
 .crdHvr{
   height:210px;
-  border:1px solid transparent;
+  border:3px solid $body-bg2;
+  border-radius: 5px;
   background:#FFF;
   box-shadow:0px 12px 4px -10px #bbb;
-  @include transition( all 0.15s linear .01s );
+  @include transition( all 0.15s linear .1s );
   overflow: hidden;
+
 }
 .crdHvr:hover
 {
   cursor: pointer;
-  border:1px solid #ddd;
+  border:3px solid $secondary-color-hover;
+  border-radius: 5px;
   box-shadow:0px 6px 5px -5px #999;
   @include transition( all 0.15s linear .01s );
 }
@@ -515,7 +529,7 @@ table.dataTable thead th,
 }
 .modal-header
 {
-  background:$primary-color;
+  background:$secondary-color;
   box-shadow:0px 15px 15px -10px #ccc;
   border-bottom:transparent;
   color:#fff;
@@ -544,7 +558,9 @@ small
   color:#000;
 }
 
-
+.nav-tabs{
+  border-bottom: 3px solid $light-blue !important;
+}
 
 
 /* Templates fields */
@@ -613,7 +629,17 @@ small
 {
   color:$text-color-darkset3-hover;
 }
+ .nav-link{
+   font-weight: 800;
+   font-size: 1.1rem;
+ }
 
+.nav-tabs .nav-link.active {
+  font-size: 1.3rem;
+  color: $secondary-color;
+  border-color: $light-blue;
+  border-width: 3px 3px 0px 3px !important;
+}
 
 
 

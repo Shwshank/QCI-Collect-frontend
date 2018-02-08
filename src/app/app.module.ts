@@ -9,6 +9,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from 'ng2-toastr';
 import {NgPipesModule} from 'ngx-pipes';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -47,6 +48,8 @@ import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
 import { InputCameraComponent } from './home/form/form-builder/input-camera/input-camera.component';
 import { InputVideoComponent } from './home/form/form-builder/input-video/input-video.component';
 import { TeamsComponent } from './home/organisation/teams/teams.component';
+import { Graph2Component } from './home/project/graph2/graph2.component';
+import { Graph1Component } from './home/project/graph1/graph1.component';
 
 @NgModule({
   declarations: [
@@ -81,9 +84,12 @@ import { TeamsComponent } from './home/organisation/teams/teams.component';
     InputCameraComponent,
     InputVideoComponent,
     TeamsComponent,
+    Graph2Component,
+    Graph1Component,
 
   ],
   imports: [
+    NgxEchartsModule,
     MultiselectDropdownModule,
     BrowserModule,
     BrowserAnimationsModule,
