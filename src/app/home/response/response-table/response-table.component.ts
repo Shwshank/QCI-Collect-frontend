@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-response-table',
   templateUrl: './response-table.component.html',
-  styleUrls: ['./response-table.component.css']
+  styleUrls: ['./response-table.component.scss']
 })
 export class ResponseTableComponent implements OnInit {
 

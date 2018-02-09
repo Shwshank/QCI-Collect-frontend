@@ -35,6 +35,10 @@ export class DashboardComponent implements OnInit {
      });
   }
 
+  navClick(pos){
+    console.log(pos);
+  }
+
   ngOnInit() {
     // this.showCustom();
   }

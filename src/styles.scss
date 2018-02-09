@@ -27,6 +27,8 @@ $body-bg2:#386383;
 $cont-bg1:#e4e5f1;
 $div-height:95vh;
 $light-blue: #94cbdb;
+$light-highlight: #e46592;
+$light-highlight2:#bb2256;
 
 $col-1:8.33%;
 $col-2:16.67%;
@@ -160,7 +162,7 @@ body
   background:$secondary-color;
   border-color:$secondary-color-border;
   color:$text-color-darkset3;
-  font-weight: 800;
+  // font-weight: 800;
 }
 .btn-primary:hover
 {
@@ -174,14 +176,17 @@ body
   transform: scale(0.95);
   transition-duration:0.15s;
 }
+ .btn-secondary{
+  color: $text-color-darkset3 !important;
+}
 .cbx
 {
   box-shadow: 0px 2px 2px #ccc;
   @include transition(all 0.45s linear .04s);
-  background:linear-gradient(to left,$light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF);
-  background:-webkit-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
-  background:-moz-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
-  background:-ms-linear-gradient($light-blue, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:linear-gradient(to left, #e2f8ff, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF);
+  background:-webkit-linear-gradient(to left, #e2f8ff, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-moz-linear-gradient(to left, #e2f8ff, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
+  background:-ms-linear-gradient(to left, #e2f8ff, #FFF, #FFF,#FFF, #FFF,#FFF, #FFF,#FFF, #FFF);
   border:3px solid $body-bg2;
   border-radius: 5px;
 }
@@ -249,7 +254,7 @@ body
 .slider-fix
 {
   // background-color:$body-bg2;
-  background:linear-gradient(to bottom,$body-bg2, #bac9d4);
+  background:linear-gradient(to bottom,$body-bg2, #bac9d4ad);
   //border-right:$br-light;
   position:fixed;
   top:$top-menu-height;
@@ -335,7 +340,8 @@ ul.nav.flex-column
 /*Dashboard project css*/
 .homeDivStyle
 {
-  border:1px solid #ccc;
+  border:1px solid $light-blue;
+  border-radius: 3px;
   background:#fafafa;
   box-shadow:none;
   @include transition(all 0.15s linear .01s);
@@ -630,8 +636,8 @@ small
   color:$text-color-darkset3-hover;
 }
  .nav-link{
-   font-weight: 800;
-   font-size: 1.1rem;
+  //  font-weight: 800;
+  //  font-size: 1.1rem;
  }
 
 .nav-tabs .nav-link.active {
@@ -640,13 +646,6 @@ small
   border-color: $light-blue;
   border-width: 3px 3px 0px 3px !important;
 }
-
-
-
-
-
-
-
 
 //font awesome css
 .fa-arrow-up,
@@ -661,13 +660,6 @@ small
         opacity: 1;
         @include transition( all 0.15s linear .01s );
       }
-
-
-
-
-
-
-
 
 @media only screen and (max-width:1024px){
 .crdHvr
@@ -685,14 +677,15 @@ small
 
 
 
+.navbar-default .navbar-nav > li > a.router-link-active {
+  color: #555;
+  background-color: #e7e7e7;
+}
 
-
-
-
-
-
-
-
+.navbar-default .navbar-nav > li > a.router-link-active {
+  color: #555;
+  background-color: #e7e7e7;
+}
 
 
 

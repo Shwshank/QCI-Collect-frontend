@@ -1,6 +1,6 @@
 <div class="container-fluid mt-4 text-center" style="background:#fff; box-shadow:0 1px 1px #a9a8a9; min-height:90vh">
     <br />
-    <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='new()'>+ New</button>
+    <button type="button" class="btn btn-primary col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='new()'>+ New</button>
     <ul class="nav nav-tabs justify-content-center mt-4">
       <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
       <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
@@ -15,25 +15,35 @@
       <div class="tab-pane active" id="form" role="tabpanel" >
         <br>
         <div class="row text-left" >
-          <div *ngFor='let form of formArray; let i = index' class="col-lg-4 col-md-5 col-sm-6" style="margin-bottom:15px">
-            <div class="card cbx">
+          <div *ngFor='let form of formArray; let i = index' class="col-lg-4 col-md-5 col-sm-6" style="margin-bottom:15px; position: relative">
+            <div class="card cbx cbx11">
+              <div class="statusTag" *ngIf="form.Details.status=='Online'"> &nbsp; {{form.Details.status}} &nbsp; </div>
               <div class="card-block p-0">
                 <div class="col-sm-12  mt-2">
                   <h5 class="card-title col-sm-12">{{form.Details.name | shorten: 24: '...'}}</h5>
                   <h5 class="card-subtitle col-sm-12 mb-2 text-muted"> <b> {{form.Details.project | shorten: 24: '...'}} </b> </h5>
                 </div>
                 <div class="col-sm-12 row m-0">
-                  <p class="card-text col-sm-12">Some text here...</p>
+                  <p class="card-text col-sm-12"> </p>
+
                   <br>
-                  <a class="card-link col-6 d-inline-block" >
-                    <input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)'>
+
+                  <!-- <a href="" class="col-1" ></a> -->
+
+                  <a class="col-5" >
+                    <input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)' class="checkStyle">
                     {{form.Details.status}}
+                    <span class="checkmark"></span>
                   </a>
-                  <a href="#" class="card-link col-6 d-inline-block ml-0" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
+
+                  <a href="#"  [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" style="font-size:1.3rem" >View form</a>
+
                 </div>
-                <div class="col-12 pl-3  pr-1 pb-4 mt-4 ml-3 mb-3">
+                <!-- <span style="color: #e91e63; " > {{form.Details.responses}} </span>                 -->
+                <div class="col-11  pr-1 pb-4 mt-4  mb-3">
                   <button style="float: left" (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary " data-toggle="modal" data-target="#rules">Rule/s</button>
-                  <button style="margin-left:40px; float: left" (click)='getResponse(form.Details.cid)' type="button" class="btn btn-primary " data-toggle="modal" data-target="#rules">{{form.Details.responses}}  Responses </button>
+                  <button style="margin-left:15px; float: left" (click)='getResponse(form.Details.cid)' type="button" class="btn btn-primary " data-toggle="modal" data-target="#rules">  Responses </button>
+                  <span class="responseCount" >  {{form.Details.responses}}  </span>
                 </div>
                 <br>
               </div>

@@ -50,6 +50,7 @@ import { InputVideoComponent } from './home/form/form-builder/input-video/input-
 import { TeamsComponent } from './home/organisation/teams/teams.component';
 import { Graph2Component } from './home/project/graph2/graph2.component';
 import { Graph1Component } from './home/project/graph1/graph1.component';
+import { Graph3Component } from './home/project/graph3/graph3.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { Graph1Component } from './home/project/graph1/graph1.component';
     TeamsComponent,
     Graph2Component,
     Graph1Component,
+    Graph3Component,
 
   ],
   imports: [
