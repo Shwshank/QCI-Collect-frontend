@@ -139,7 +139,7 @@ export class ResponseTableComponent implements OnInit {
   }
 
   changeTag(i,res) {
-    this.resIdForTag = res[1].value;
+    this.resIdForTag = res[2].value;
     this.tagPos = i;
 
     $("#changeTag").modal("show");
@@ -148,7 +148,7 @@ export class ResponseTableComponent implements OnInit {
   newTag(tag) {
     console.log(this.resIdForTag);
     console.log(this.tagPos);
-    this.response[this.tagPos][3].value = tag;
+    this.response[this.tagPos][4].value = tag;
     $("#changeTag").modal("hide");
     this.projectService.updateTag(this.resIdForTag,tag);
   }
@@ -187,7 +187,7 @@ export class ResponseTableComponent implements OnInit {
       }
     }
     // Update status od flag to VERIFIED
-    if(tag !="Pending" && (this.response[this.detailPos][3].value == "Pending" || this.response[this.detailPos][3].value == "Flagged")) {
+    if(tag !="Pending" && (this.response[this.detailPos][4].value == "Pending" || this.response[this.detailPos][4].value == "Flagged")) {
       this.verifyAll = true;
       this.saveFlag = false;
     } else {
@@ -203,7 +203,7 @@ export class ResponseTableComponent implements OnInit {
   }
 
   saveFlagFun(){
-    this.response[this.detailPos][3].value = "Flagged";
+    this.response[this.detailPos][4].value = "Flagged";
     console.log(this.response[this.detailPos]);
     console.log(this.resId);
     this.projectService.flagResponse(this.resId, this.response[this.detailPos]);
@@ -219,8 +219,8 @@ export class ResponseTableComponent implements OnInit {
   }
 
   verifyTag() {
-    this.response[this.detailPos][3].value = "Verified";
-    this.projectService.updateTag(this.response[this.detailPos][1].value,"Verified");
+    this.response[this.detailPos][4].value = "Verified";
+    this.projectService.updateTag(this.response[this.detailPos][2].value,"Verified");
     $('#getDetails').modal("hide");
   }
 }

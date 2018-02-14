@@ -8,7 +8,7 @@ import 'datatables.net';
 @Component({
   selector: 'app-response',
   templateUrl: './response.component.html',
-  styleUrls: ['./response.component.css']
+  styleUrls: ['./response.component.scss']
 })
 export class ResponseComponent implements OnInit {
 
@@ -61,6 +61,10 @@ export class ResponseComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  details(id) {
+    $("#responseDetails").modal('show');
   }
 
   ngOnDestroy() {

@@ -87,6 +87,46 @@ ss-multiselect-dropdown div ul li .dropdown-item.active, ss-multiselect-dropdown
     background-color: #acd8ff !important;
 }
 
+th{
+  text-align: center;
+}
+
+.noTag{
+  font-weight: 600;
+  color: gray !important;
+  background-color: #eaeaea;
+  border : 2px solid #c5c5c5;
+  border-radius: 4px;
+}
+.flaggedTag{
+  color:#525351 !important;
+  font-weight: bold;
+  background-color: #ffd27f;
+  border : 3px solid orange;
+  border-radius: 4px;
+}
+.pendingTag{
+  color:#525351 !important;
+  font-weight: bold;
+  background-color: #7ff0ff;
+  border : 3px solid #2196F3;
+  border-radius: 4px;
+}
+.verifiedTag{
+  color:#525351 !important;
+  font-weight: bold;
+  background-color: #cffd9a;
+  border : 3px solid #8BC34A;
+  border-radius: 4px;
+}
+.archivedTag{
+  color:#525351 !important;
+  font-weight: bold;
+  background-color: #ffd9d7;
+  border : 3px solid #ff796f;
+  border-radius: 4px;
+}
+
 
 
 /*Common css*/
@@ -208,7 +248,7 @@ body
   left:0;
   width:16.667%;
   font-size:10px;
-  color:$text-color-darkset2;
+  color: $light-highlight2;
   @include transition(all 0.15s linear .01s);
 }
 
