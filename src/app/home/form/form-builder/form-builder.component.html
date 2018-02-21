@@ -12,7 +12,8 @@
       </div>
       <div *ngFor='let json of jsonArray; let i = index' style=" max-height:750px; overflow-y:auto; overflow-x:hidden;">
         <div *ngIf="json.type == 'location'" >
-          <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
+          <!-- <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i> -->
+          <app-input-location name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-location>
         </div>
         <div *ngIf="json.type == 'text'" >
           <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
