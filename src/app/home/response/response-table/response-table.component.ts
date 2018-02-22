@@ -58,7 +58,10 @@ export class ResponseTableComponent implements OnInit {
       this.display();
     });
 
-    this.mapSrc = "https://www.google.com/maps/embed/v1/place?key=AIzaSyA7ncvWAZbtaSujgwstq290g_Y1VskhlXE&q="+this.lat+","+this.lng+"";
+
+    // this.mapSrc = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDckRiiAGkAOBQlq3nKOls1MGgFtbVLKxs="+this.lat+","+this.lng+"";
+    this.mapSrc = "https://maps.googleapis.com/maps/api/staticmap?center="+this.lat+","+this.lng+"&markers=color:red|"+this.lat+","+this.lng+"&zoom=12&size=800x1000";
+    console.log(this.mapSrc);
   }
 
   ngOnInit() {
