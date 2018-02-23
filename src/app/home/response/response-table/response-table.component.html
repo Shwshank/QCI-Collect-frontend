@@ -51,7 +51,7 @@
               </td>
               <td *ngFor = 'let temp of res; let j = index' >
 
-                <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag"' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
+                <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag" && temp.type!= "location"' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
 
                 <span *ngIf='temp.type == "tag" ' >                                                                                              <!-- T A G G E D  V A L U E  -->
                   <span style="display: none" >{{temp.value}} </span>
@@ -63,7 +63,7 @@
 
                 </span>
 
-                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='imageModal(temp.value,temp.location,temp.fileName)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
                 <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 
@@ -71,6 +71,13 @@
                   <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
                   <span style="display: none" >{{temp.value}}</span>
                 </span>  <!-- F I L E   V A L U E  -->
+
+                <span *ngIf='temp.type == "location" ' >
+                  <!-- Latitude: {{temp.value.lat}} <br>
+                  Longitude: {{temp.value.lat}} <br>
+                  Accuracy: {{temp.value.acc}} -->
+                  <img [src]= getGoogleMap(temp.value.lat,temp.value.lng) alt="" (click)='locationModal(temp.value)'>
+                </span>
 
               </td>
           </tr>
@@ -110,7 +117,7 @@
 
                 </span>
 
-              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value,temp.location,temp.fileName)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
               <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 
@@ -204,6 +211,10 @@
           <div class="col-5" >
             <div class="row" >
               <div class="col-12" style="height:200px">
+                {{imgFilename}} <br>
+                Latitude: {{imgLocation.lat}} <br>
+                Longitude: {{imgLocation.lng}} <br>
+                Accuracy: {{imgLocation.acc}}
                 <hr>
                 <button type="button" class="btn btn-primary"  (click)="openImageNewTab(imgUrl)">Open in new tab </button>
               </div>
@@ -211,7 +222,7 @@
 
                  <!-- GOOGLE MAP -->
 
-                 <img [src]="mapSrc" height="100%" width="100%" alt="">
+                 <img [src]= getGoogleMapBig(imgLocation.lat,imgLocation.lng) height="100%" width="100%" alt="">
 
               </div>
             </div>
@@ -226,3 +237,43 @@
   </div>
 </div>
 <!-- Image modal -->
+
+<!-- location modal -->
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:750px; height:700px;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image View</h5>
+      </div>
+      <div class="modal-body text-center" style="overflow-y: auto">
+        <div class="row justify-content-md-center" >
+
+          <div class="col-7" >
+              <img class="north" [src]= getGoogleMapBig2(iLocation.lat,iLocation.lng) style="max-width:100%"/>
+          </div>
+          <div class="col-5" >
+            <div class="row" >
+              <div class="col-12" style="height:200px">
+                Loacation: {{iLocation.lat}}, {{iLocation.lng}} <br>
+                Accuracy: {{iLocation.acc}} meters
+                <hr>
+                <button type="button" class="btn btn-primary"  (click)="openImageNewTab(getGoogleMapBig3(iLocation.lat,iLocation.lng))">Open in new tab </button>
+              </div>
+              <div class="col-12" style="height:100%; width:100%">
+
+                 <!-- GOOGLE MAP -->
+
+                 <!-- <img [src]= getGoogleMapBig(imgLocation.lat,imgLocation.lng) height="100%" width="100%" alt=""> -->
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>

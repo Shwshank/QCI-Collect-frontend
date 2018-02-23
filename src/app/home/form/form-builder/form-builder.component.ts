@@ -41,7 +41,6 @@ export class FormBuilderComponent implements OnInit {
   sub7:any;
   sub8:any;
 
-
   constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute , private router: Router) {
 
     this.sub1 = this.projectService.emitTemplateWithID.subscribe((res)=>{

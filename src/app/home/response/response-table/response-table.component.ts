@@ -34,6 +34,9 @@ export class ResponseTableComponent implements OnInit {
   lng: any = 77.24714399999999;
   mapSrc: any;
   headerMinusOne: any = [];
+  imgLocation: any={lat:'', lng:'', acc:''};
+  imgFilename: any;
+  iLocation: any={lat:'', lng:'', acc:''};
 
   constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer) {
 
@@ -69,6 +72,27 @@ export class ResponseTableComponent implements OnInit {
         this.formId = params.id;
         this.projectService.getFormResponseArray(this.formId);
     });
+  }
+
+  getGoogleMap(lat, lng) {
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=7&size=100x60";
+  }
+
+  getGoogleMapBig(lat, lng) {
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=14&size=300x300";
+  }
+
+  getGoogleMapBig2(lat, lng) {
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=16&size=500x500";
+  }
+
+  getGoogleMapBig3(lat, lng) {
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=15&size=1000x1000";
+  }
+
+  locationModal(location) {
+    this.iLocation = location;
+    $('#locationModal').modal('show');
   }
 
   photoURL() {
@@ -126,7 +150,13 @@ export class ResponseTableComponent implements OnInit {
     window.open(url, '_blank');
   }
 
-  imageModal(url) {
+  imageModal(url, location, fileName) {
+    this.imgLocation = location;
+    this.imgFilename = fileName;
+
+    console.log(this.imgFilename);
+    console.log(this.imgLocation);
+
     this.imgUrl = url;
     $('#imageModal').modal('show');
   }
