@@ -75,19 +75,19 @@ export class ResponseTableComponent implements OnInit {
   }
 
   getGoogleMap(lat, lng) {
-    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=7&size=100x60";
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=7&size=100x60&key=AIzaSyBfEtpUU_-krt-FcLlcUX2IW6hFfUo12v0";
   }
 
   getGoogleMapBig(lat, lng) {
-    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=14&size=300x300";
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=14&size=300x300&key=AIzaSyBfEtpUU_-krt-FcLlcUX2IW6hFfUo12v0";
   }
 
   getGoogleMapBig2(lat, lng) {
-    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=16&size=500x500";
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=16&size=500x500&key=AIzaSyBfEtpUU_-krt-FcLlcUX2IW6hFfUo12v0";
   }
 
   getGoogleMapBig3(lat, lng) {
-    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=15&size=1000x1000";
+    return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=15&size=1000x1000&key=AIzaSyBfEtpUU_-krt-FcLlcUX2IW6hFfUo12v0";
   }
 
   locationModal(location) {
