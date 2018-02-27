@@ -122,11 +122,9 @@ export class UserComponent implements OnInit {
 
   deleteProjectUserArray(projCid) {
     this.projectService.deleteProjectUserArray(this.userCid, projCid);
-    // console.log(this.userCid);
     $("#userProjectModal").modal('hide');
     this.projectArray = [];
     this.userProjectArray= [];
-
   }
 
   projectName(project) {
@@ -139,11 +137,15 @@ export class UserComponent implements OnInit {
 
   }
 
+  userDetails(id, cid) {
+    $("#userDetails").modal('show');
+    console.log(id);
+    console.log(cid);
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
   }
-
-
 
 }

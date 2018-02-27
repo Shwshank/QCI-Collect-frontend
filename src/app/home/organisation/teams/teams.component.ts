@@ -36,6 +36,7 @@ export class TeamsComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private router: Router) {
     this.sub = this.projectService.emitTeams.subscribe(res=>{
+      console.log(res);
       this.teams = res;
       this.flag = true;
       this.display();
@@ -138,11 +139,6 @@ export class TeamsComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-    this.sub1.unsubscribe();
-  }
-
   showAssesorModal( teamName, teamCid, asrArray ) {
     // this.projectService.getAssessors();
     this.extAsrNameArray = [];
@@ -203,11 +199,21 @@ export class TeamsComponent implements OnInit {
     this.teamCid = "";
   }
 
-
   addNewManager() {
     this.projectService.addNewManagerInTeam(this.tl, this.teamCid);
     $("#showManagerModal").modal('hide');
 
+  }
+
+  teamDetails(id, cid) {
+    console.log(id);
+    console.log(cid);
+    $("#teamDetails").modal('show');
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub1.unsubscribe();
   }
 
 

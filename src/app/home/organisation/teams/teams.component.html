@@ -34,7 +34,7 @@
                   </button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
+                  <button type="button" class="btn btn-primary " (click)="teamDetails(i, res.cid)" >  {{res.details}}  </button>
                 </td>
             </tr>
         </tbody>
@@ -173,3 +173,26 @@
   </div>
 </div>
 <!-- Add Manager model -->
+
+<!-- Team details -->
+<div class="modal fade" id="teamDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+      </div>
+      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+          <div class="row justify-content-center" >
+
+            <br>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Team details -->

@@ -26,7 +26,7 @@
 
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
+                  <button type="button" class="btn btn-primary " (click)="userDetails(i,res.cid)" >  {{res.details}}  </button>
                 </td>
             </tr>
     </tbody>
@@ -94,3 +94,37 @@
   </div>
 </div>
 <!-- User Project model -->
+
+<!-- User details -->
+<div class="modal fade" id="userDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+      </div>
+      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+          <div class="row justify-content-center" >
+
+            <br>
+
+            <!-- <div  class="col-12" *ngFor="let pro of userProjectArray; let i = index">{{i+1}}. {{pro.name}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteProjectUserArray(pro.cid)' ></i> <br> </div>
+            <br>
+            <br>
+            <br>
+            <div class="col-12" >Assign new project : </div>
+            <select [(ngModel)]="projectAs" class="col-8 form-control mb-5" >
+              <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+            </select>
+            <div  class="col-12"></div>
+            <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewProject()'>Assign</button> -->
+
+          </div>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- User details -->
