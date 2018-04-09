@@ -65,6 +65,11 @@
         </div>
       </div>
       <br/>
+
+      <div>
+          <button *ngIf='updateForm' type="button" class="btn btn-primary" (click)='update()'> Update </button>
+      </div>
+
       <div *ngIf='displayPublish' >
           <button *ngIf='displayPublishForm' type="button" class="btn btn-success" (click)='publishForm()'> {{sumbitForm}} </button>
       </div>

@@ -9,9 +9,10 @@ declare var $: any;
 })
 export class ProjectComponent implements OnInit {
 
-  projects: any = [];
+  projects: any = [{assesor:'', cdate:'', desc:'', form:'', name:'', user:''}];
   pname: any;
   pdesc: any;
+  pos: any = 0;
 
   constructor(private projectService: ProjectService) {
 
@@ -26,12 +27,13 @@ export class ProjectComponent implements OnInit {
   }
 
   newProject() {
-    // console.log(this.pname);
-    // console.log(this.pdesc);
-
     this.projectService.addNewProject(this.pname,this.pdesc);
     $('#projectModal').modal('hide');
   }
 
+  projectDetail(i) {
+    this.pos = i;
+    $('#projectDetail').modal('show');
+  }
 
 }

@@ -40,6 +40,8 @@ export class FormBuilderComponent implements OnInit {
   sub6:any;
   sub7:any;
   sub8:any;
+  sub9:any;
+  updateForm: any = false;
 
   constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute , private router: Router) {
 
@@ -78,7 +80,7 @@ export class FormBuilderComponent implements OnInit {
     });
 
     this.sub3 = this.projectService.emitFormElement.subscribe((res)=>{
-      // console.log(res);
+      this.updateForm = true;
       res = JSON.stringify(res);
       res = JSON.parse(res);
       this.jsonArray.push(res);
@@ -88,7 +90,7 @@ export class FormBuilderComponent implements OnInit {
     });
 
     this.sub4 = this.projectService.emitFormElementTemp.subscribe((res)=>{
-      // console.log(res);
+      this.updateForm = true;
       res = JSON.stringify(res);
       res = JSON.parse(res);
       this.jsonArray = this.jsonArray.concat(res);
@@ -100,6 +102,7 @@ export class FormBuilderComponent implements OnInit {
     this.sub5 = this.projectService.emitDeleteElement.subscribe((res)=>{
 
       this.jsonArray.splice(res,1);
+      this.updateForm  = true;
       if(this.jsonArray.length == 0) {
         this.displayPublish = false;
         // console.log(this.displayPublish);
@@ -108,28 +111,33 @@ export class FormBuilderComponent implements OnInit {
 
     });
 
-    // this.sub6 = this.projectService.emitUpElement.subscribe((res)=>{
-    //
-    //   let temp1 = this.jsonArray[(parseInt(res)-1)];
-    //   this.jsonArray.splice((parseInt(res)-1),1);
-    //   this.jsonArray.splice(parseInt(res), 0, temp1);
-    // });
-    //
-    // this.sub7 = this.projectService.emitDownElement.subscribe((res)=>{
-    //
-    //   if(res < (this.jsonArray.length-1)) {
-    //
-    //     let temp2 = this.jsonArray[(parseInt(res)+1)];
-    //     this.jsonArray.splice((parseInt(res)+1),1);
-    //     this.jsonArray.splice(parseInt(res), 0, temp2);
-    //   }
-    //
-    // });
+    this.sub6 = this.projectService.emitUpElement.subscribe((res)=>{
+      this.updateForm = true;
+
+      let temp1 = this.jsonArray[(parseInt(res)-1)];
+      this.jsonArray.splice((parseInt(res)-1),1);
+      this.jsonArray.splice(parseInt(res), 0, temp1);
+    });
+
+    this.sub7 = this.projectService.emitDownElement.subscribe((res)=>{
+      this.updateForm = true;
+
+      if(res < (this.jsonArray.length-1)) {
+
+        let temp2 = this.jsonArray[(parseInt(res)+1)];
+        this.jsonArray.splice((parseInt(res)+1),1);
+        this.jsonArray.splice(parseInt(res), 0, temp2);
+      }
+    });
 
     this.sub8 = this.projectService.emitProject.subscribe((res)=>{
-
       this.projectArray = res;
     });
+
+    // this.sub9 = this.projectService.emitConfirmUpdateForm.subscribe((res)=>{
+    //
+    //   // this.projectService.confirmUpdateFormArray(this.formID, this.jsonArray);
+    // });
 
   }
 
@@ -202,17 +210,23 @@ export class FormBuilderComponent implements OnInit {
 
   }
 
+  update() {
+    if(this.updateForm) {
+      if(this.tempDetails) {
+        console.log(this.existingTemp);
+        this.projectService.updateTempJson(this.existingTemp);
+        this.updateForm = false;
+      }
+
+      if(this.formDetails) {
+        console.log(this.existingForm);
+        this.projectService.updateFormJson(this.existingForm);
+        this.updateForm = false;
+      }
+    }
+  }
+
   ngOnDestroy() {
-
-    if(this.tempDetails) {
-      console.log(this.existingTemp);
-      this.projectService.updateTempJson(this.existingTemp);
-    }
-
-    if(this.formDetails) {
-      console.log(this.existingForm);
-      this.projectService.updateFormJson(this.existingForm);
-    }
 
     this.sub.unsubscribe();
     this.sub1.unsubscribe();

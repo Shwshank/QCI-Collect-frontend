@@ -99,6 +99,7 @@ export class ProjectService {
   emitErrorRes = new EventEmitter<any>();
   emitInfoRes = new EventEmitter<any>();
   emitTeams = new EventEmitter<any>();
+  emitConfirmUpdateForm = new EventEmitter<any>();
 
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
@@ -260,7 +261,7 @@ export class ProjectService {
     this.apiService.UpdateFormJson(form).subscribe(res=>{
       console.log(res);
       if(res.success) {
-        // this.emitSuccessRes.emit(res.message);
+        this.emitSuccessRes.emit(res.message);
       }else {}
     }, err=>{
       console.log(err);
@@ -271,7 +272,7 @@ export class ProjectService {
     this.apiService.UpdateTempJson(temp).subscribe(res=>{
       // console.log(res);
       if(res.success) {
-        // this.emitSuccessRes.emit(res.message);
+        this.emitSuccessRes.emit(res.message);
       }else {}
     }, err=>{
       console.log(err);

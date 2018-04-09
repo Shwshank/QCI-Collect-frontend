@@ -52,6 +52,7 @@ import { Graph2Component } from './home/project/graph2/graph2.component';
 import { Graph1Component } from './home/project/graph1/graph1.component';
 import { Graph3Component } from './home/project/graph3/graph3.component';
 import { InputLocationComponent } from './home/form/form-builder/input-location/input-location.component';
+import { OrgFormComponent } from './home/organisation/org-form/org-form.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { InputLocationComponent } from './home/form/form-builder/input-location/
     Graph1Component,
     Graph3Component,
     InputLocationComponent,
+    OrgFormComponent,
 
   ],
   imports: [
