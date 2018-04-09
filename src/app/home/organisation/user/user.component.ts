@@ -20,6 +20,8 @@ export class UserComponent implements OnInit {
   projectAssociate: any;
   userProjectName : any;
   userProjectArray : any =[];
+  tempArray1 : any =[];
+  tempArray2 : any =[];
   projectAs: any;
   userCid: any;
   sub: any;
@@ -44,6 +46,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.projectService.getUsers();
+    this.projectService.getProject();
   }
 
   display() {
@@ -91,6 +94,8 @@ export class UserComponent implements OnInit {
   }
 
   showProjectModal( userName, userCid, projectArray) {
+    this.tempArray1 = [];
+    this.tempArray2 = [];
     this.projectService.getProject();
     let n = 0;
     let temp = [];
@@ -98,33 +103,54 @@ export class UserComponent implements OnInit {
     this.userCid = userCid;
     this.userProjectArray = projectArray;
 
-    for(let i =0; i< this.userProjectArray.length; i++) {
-      for(let j = 0; j<this.projectArray.length; j++) {
-        if(this.userProjectArray[i].cid == this.projectArray[j].cid ) {
-          temp.push(j);
-        }
-      }
+
+    for(let i=0; i<this.projectArray.length; i++) {
+        this.tempArray1.push(this.projectArray[i].name);
     }
-    // for(let i = 0; i<temp.length; i++) {
-    //   this.projectArray.splice([temp[i]],1);
-    // }
+
+    for(let i=0; i<this.userProjectArray.length; i++) {
+        this.tempArray2.push(this.userProjectArray[i].name);
+    }
+
+    console.log(this.tempArray1);
+    console.log(this.tempArray2);
+
+    this.tempArray1 = this.tempArray1.filter(val => !this.tempArray2.includes(val));
+    console.log(this.tempArray1);
+
     $("#userProjectModal").modal('show');
 
   }
 
   assignNewProject() {
-    this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
+    let temp;
+    for(let i=0; i<this.projectArray.length; i++) {
+      if(this.projectAs === this.projectArray[i].name){
+        temp = this.projectArray[i];
+        break;
+      }
+    }
+
+    this.projectService.assignNewProjectToUser(this.userCid,temp);
     $("#userProjectModal").modal('hide');
     this.projectArray = [];
     this.userProjectArray= [];
     this.projectAs = "";
+    this.projectService.getProject();
+    this.projectArray = [];
+    this.userProjectArray= [];
+    this.tempArray1 = [];
+    this.tempArray2 = [];
   }
 
   deleteProjectUserArray(projCid) {
+    this.projectService.getProject();
     this.projectService.deleteProjectUserArray(this.userCid, projCid);
     $("#userProjectModal").modal('hide');
     this.projectArray = [];
     this.userProjectArray= [];
+    this.tempArray1 = [];
+    this.tempArray2 = [];
   }
 
   projectName(project) {

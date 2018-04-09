@@ -79,7 +79,7 @@
             <br>
             <div class="col-12" >Assign new project : </div>
             <select [(ngModel)]="projectAs" class="col-8 form-control mb-5" >
-              <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+              <option *ngFor='let opt of tempArray1; let i=i' [ngValue]=opt  >{{opt}}</option>
             </select>
             <div  class="col-12"></div>
             <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewProject()'>Assign</button>
