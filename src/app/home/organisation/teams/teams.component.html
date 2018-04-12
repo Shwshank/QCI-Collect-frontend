@@ -34,7 +34,7 @@
                   </button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary " (click)="teamDetails(i, res.cid)" >  {{res.details}}  </button>
+                  <button type="button" class="btn btn-primary " (click)="teamDetails(i, res.cid)" disabled>  {{res.details}}  </button>
                 </td>
             </tr>
         </tbody>
@@ -85,13 +85,13 @@
 
             {{teamName}} is  assigned with  form/s :  <br>
 
-            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormTeamArray(pro.cid)' ></i> <br> </div>
+            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name}} - {{pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormTeamArray(pro.cid)' ></i> <br> </div>
             <br>
             <br>
             <br>
             <div class="col-12" >Assign new project : </div>
             <select [(ngModel)]="newForm" class="col-8 form-control mb-5" >
-              <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt  >{{opt.Details.name + " " + opt.Details.project}}</option>
+              <option *ngFor='let opt of tempFormArray2; let i=i' [ngValue]=opt  >{{opt}}</option>
             </select>
             <div  class="col-12"></div>
             <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewFrom()'>Assign</button>
@@ -125,7 +125,7 @@
 
             <br>
             <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
-              <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>
+              <option *ngFor='let opt of tempArray1; let i=i' [ngValue]=opt>{{opt}}</option>
             </select>
           </div>
       </div>

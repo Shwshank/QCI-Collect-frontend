@@ -24,6 +24,10 @@ export class TeamsComponent implements OnInit {
   extAsrArray : any = [];
   extAsrNameArray : any = [];
   extMgrNameArray : any = [];
+  tempArray1: any = [];
+  tempArray2: any = [];
+  tempFormArray1: any = [];
+  tempFormArray2: any = [];
   newForm: any;
   teamCid: any;
   tl: any;
@@ -36,7 +40,7 @@ export class TeamsComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private router: Router) {
     this.sub = this.projectService.emitTeams.subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.teams = res;
       this.flag = true;
       this.display();
@@ -44,6 +48,7 @@ export class TeamsComponent implements OnInit {
 
     this.sub1 = this.projectService.emitFormArray.subscribe(res=>{
       this.formArray = res;
+      // console.log(this.formArray);
     });
 
     this.sub2 = this.projectService.emitAssessors.subscribe(res=>{
@@ -53,6 +58,7 @@ export class TeamsComponent implements OnInit {
 
   ngOnInit() {
     this.projectService.getTeams();
+    this.projectService.getFormArray();
   }
 
   display() {
@@ -99,6 +105,8 @@ export class TeamsComponent implements OnInit {
   }
 
   showFormModal( teamName, teamCid, formArray) {
+    this.tempFormArray1 = [];
+    this.tempFormArray2 = [];
     this.projectService.getFormArray();
     let n = 0;
     let temp = [];
@@ -106,17 +114,43 @@ export class TeamsComponent implements OnInit {
     this.teamCid = teamCid;
     this.teamFormArray = formArray;
 
+    // console.log(this.teamFormArray);
+    // console.log(this.formArray);
+
+    for(let i = 0; i<this.teamFormArray.length; i++){
+      this.tempFormArray1.push(this.teamFormArray[i].name);
+    }
+
+    for(let i = 0; i<this.formArray.length; i++){
+      this.tempFormArray2.push(this.formArray[i].Details.name);
+    }
+
+    this.tempFormArray2 = this.tempFormArray2.filter(val => !this.tempFormArray1.includes(val));
+
+    // console.log(this.tempFormArray1);
+    // console.log(this.tempFormArray2);
+
     $("#showFormModal").modal('show');
   }
 
   assignNewFrom() {
-    // this.projectService.assignNewProjectToUser(this.userCid,this.newForm);
-    this.projectService.assignNewFormToTeam(this.teamCid,this.newForm);
+
+    let temp;
+
+    for(let i = 0 ;i<this.formArray.length; i++) {
+      if(this.formArray[i].Details.name === this.newForm) {
+        temp = this.formArray[i];
+        break;
+      }
+    }
+
+    this.projectService.assignNewFormToTeam(this.teamCid,temp);
     $("#showFormModal").modal('hide');
     this.formArray = [];
     this.teamFormArray= [];
     this.newForm = "";
     this.formArray = [];
+    this.projectService.getFormArray();
   }
 
   deleteFormTeamArray(formCid) {
@@ -141,6 +175,8 @@ export class TeamsComponent implements OnInit {
 
   showAssesorModal( teamName, teamCid, asrArray ) {
     // this.projectService.getAssessors();
+    this.tempArray1 = [];
+    this.tempArray2 = [];
     this.extAsrNameArray = [];
     let n = 0;
     let temp = [];
@@ -155,6 +191,20 @@ export class TeamsComponent implements OnInit {
         }
       }
     }
+
+    // console.log(this.extAsrNameArray);
+    // console.log(this.asrArray);
+
+    for(let i=0; i<this.asrArray.length; i++) {
+      this.tempArray1.push(this.asrArray[i].name);
+    }
+
+    for(let i=0; i<this.extAsrNameArray.length; i++) {
+      this.tempArray2.push(this.extAsrNameArray[i].name);
+    }
+
+    this.tempArray1 = this.tempArray1.filter(val => !this.tempArray2.includes(val));
+
     $("#showAssesorModal").modal('show');
   }
 
@@ -167,7 +217,17 @@ export class TeamsComponent implements OnInit {
   }
 
   addNewAssesor() {
-    this.projectService.addNewAssesorInTeam(this.tl, this.teamCid);
+
+    let temp;
+
+    for(let i = 0; i<this.asrArray.length; i++) {
+      if(this.tl === this.asrArray[i].name) {
+        temp = this.asrArray[i];
+        break;
+      }
+    }
+
+    this.projectService.addNewAssesorInTeam(temp, this.teamCid);
     $("#showAssesorModal").modal('hide');
 
   }
@@ -206,8 +266,8 @@ export class TeamsComponent implements OnInit {
   }
 
   teamDetails(id, cid) {
-    console.log(id);
-    console.log(cid);
+    // console.log(id);
+    // console.log(cid);
     $("#teamDetails").modal('show');
   }
 

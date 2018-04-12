@@ -111,9 +111,9 @@ export class UserComponent implements OnInit {
     for(let i=0; i<this.userProjectArray.length; i++) {
         this.tempArray2.push(this.userProjectArray[i].name);
     }
-
-    console.log(this.tempArray1);
-    console.log(this.tempArray2);
+    //
+    // console.log(this.tempArray1);
+    // console.log(this.tempArray2);
 
     this.tempArray1 = this.tempArray1.filter(val => !this.tempArray2.includes(val));
     console.log(this.tempArray1);
@@ -165,8 +165,8 @@ export class UserComponent implements OnInit {
 
   userDetails(id, cid) {
     $("#userDetails").modal('show');
-    console.log(id);
-    console.log(cid);
+    // console.log(id);
+    // console.log(cid);
   }
 
   ngOnDestroy() {

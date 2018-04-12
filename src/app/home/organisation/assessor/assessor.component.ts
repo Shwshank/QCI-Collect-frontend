@@ -22,6 +22,8 @@ export class AssessorComponent implements OnInit {
   assessorFormArray : any =[];
   projectAs: any;
   userCid: any;
+  tempArray1 : any = [];
+  tempArray2 : any = [];
   sub: any;
   sub1: any;
   sub2: any;
@@ -42,6 +44,7 @@ export class AssessorComponent implements OnInit {
 
   ngOnInit() {
     this.projectService.getAssessors();
+    this.projectService.getFormArray();
   }
 
   display() {
@@ -89,6 +92,8 @@ export class AssessorComponent implements OnInit {
   }
 
   showProjectModal( assessorName, assessorCid, formArray) {
+    this.tempArray1 = [];
+    this.tempArray2 = [];
     this.projectService.getFormArray();
     let n = 0;
     let temp = [];
@@ -96,17 +101,40 @@ export class AssessorComponent implements OnInit {
     this.userCid = assessorCid;
     this.assessorFormArray = formArray;
 
+    for(let i=0;i<this.assessorFormArray.length; i++) {
+      this.tempArray1.push(this.assessorFormArray[i].name);
+    }
+
+    for(let i=0;i<this.formArray.length; i++) {
+      this.tempArray2.push(this.formArray[i].Details.name);
+    }
+
+    this.tempArray2 = this.tempArray2.filter(val => !this.tempArray1.includes(val));
+
+    // console.log(this.tempArray1);
+    // console.log(this.tempArray2);
+
     $("#assessorFormModal").modal('show');
   }
 
   assignNewProject() {
-    // this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
-    this.projectService.assignNewFormToAssessor(this.userCid,this.projectAs);
+
+    let temp;
+
+    for(let i = 0 ;i<this.formArray.length; i++) {
+      if(this.formArray[i].Details.name === this.projectAs) {
+        temp = this.formArray[i];
+        break;
+      }
+    }
+
+    this.projectService.assignNewFormToAssessor(this.userCid,temp);
     $("#assessorFormModal").modal('hide');
     this.formArray = [];
     this.assessorFormArray= [];
     this.projectAs = "";
     this.formArray = [];
+    this.projectService.getFormArray();
   }
 
   deleteFormAssessorArray(formCid, projCid) {

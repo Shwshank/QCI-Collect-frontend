@@ -20,14 +20,14 @@
                 <td>
                     <button type="button" class="btn btn-primary tt1" (click)='showProjectModal(res.name, res.cid, res.form)' >
                       {{calForms(res.form)}} Forms
-                      <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span>
+                      <!-- <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span> -->
                     </button>
                     <!-- <span class="tt1" > {{projectForm(res.form) | shorten: 5: '...'}}
                       <span class="tt2" > {{projectForm(res.form)}} </span>
                     </span> -->
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
+                  <button type="button" class="btn btn-primary " disabled>  {{res.details}}  </button>
                 </td>
             </tr>
       </tbody>
@@ -78,9 +78,9 @@
             <br>
             <br>
             <br>
-            <div class="col-12" >Assign new project : </div>
+            <div class="col-12" >Assign new form : </div>
             <select [(ngModel)]="projectAs" class="col-8 form-control mb-5" >
-              <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt  >{{opt.Details.name + " " + opt.Details.project}}</option>
+              <option *ngFor='let opt of tempArray2; let i=i' [ngValue]=opt  >{{opt}}</option>
             </select>
             <div  class="col-12"></div>
             <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewProject()'>Assign</button>

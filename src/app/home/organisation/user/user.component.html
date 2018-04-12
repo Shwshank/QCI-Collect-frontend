@@ -21,12 +21,12 @@
 
                     <button type="button" class="btn btn-primary tt1" (click)='showProjectModal(res.name, res.cid, res.project)' >
                       {{calProject(res.project)}} Project/s
-                      <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span>
+                      <!-- <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span> -->
                     </button>
 
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary " (click)="userDetails(i,res.cid)" >  {{res.details}}  </button>
+                  <button type="button" class="btn btn-primary " (click)="userDetails(i,res.cid)" disabled>  {{res.details}}  </button>
                 </td>
             </tr>
     </tbody>
