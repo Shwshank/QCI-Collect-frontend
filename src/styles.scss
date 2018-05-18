@@ -159,10 +159,10 @@ body
 {
   color:$text-color-darkset3;
   background-color:$body-bg1;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
+  // -webkit-user-select:none;
+  // -moz-user-select:none;
+  // -ms-user-select:none;
+  // user-select:none;
 }
 ::-webkit-scrollbar-track
 {

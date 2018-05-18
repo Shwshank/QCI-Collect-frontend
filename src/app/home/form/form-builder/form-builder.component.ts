@@ -28,7 +28,7 @@ export class FormBuilderComponent implements OnInit {
   displayPublishForm = true;
   displayPublishTemp = true;
   projectArray : any = [];
-  projectAssociate: any;
+  projectAssociate: any = [{}];
   existingForm: any = [];
   existingTemp: any = [];
   sub: any;
@@ -131,7 +131,10 @@ export class FormBuilderComponent implements OnInit {
     });
 
     this.sub8 = this.projectService.emitProject.subscribe((res)=>{
+
       this.projectArray = res;
+      // console.log(res);
+      // this.projectAssociate = res.data;
     });
 
     // this.sub9 = this.projectService.emitConfirmUpdateForm.subscribe((res)=>{

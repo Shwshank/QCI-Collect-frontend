@@ -74,7 +74,13 @@ export class ResponseTableComponent implements OnInit {
     });
   }
 
-  getGoogleMap(lat, lng) {
+  getGoogleMap(location) {
+    let lat;
+    let lng;
+    if(location) {
+      lat = location.lat;
+      lng = location.lng;
+    }
     return "https://maps.googleapis.com/maps/api/staticmap?center="+lat+","+lng+"&markers=color:red|"+lat+","+lng+"&zoom=7&size=100x60&key=AIzaSyBfEtpUU_-krt-FcLlcUX2IW6hFfUo12v0";
   }
 

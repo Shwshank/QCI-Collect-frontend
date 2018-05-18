@@ -100,6 +100,7 @@ export class ProjectService {
   emitInfoRes = new EventEmitter<any>();
   emitTeams = new EventEmitter<any>();
   emitConfirmUpdateForm = new EventEmitter<any>();
+  emitProjectData = new EventEmitter<any>();
 
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
@@ -173,8 +174,9 @@ export class ProjectService {
     this.apiService.GetAllProjects().subscribe(res=> {
       console.log(res);
       if(res.success){
-        this.projectArray = res.data;
-        this.emitProject.emit(this.projectArray);
+        this.projectArray = res;
+        this.emitProject.emit(res.data);
+        this.emitProjectData.emit(res);
 
       } else {
         if(!res.header) {

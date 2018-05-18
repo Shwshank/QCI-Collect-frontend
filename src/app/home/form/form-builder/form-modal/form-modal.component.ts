@@ -148,7 +148,7 @@ export class FormModalComponent implements OnInit {
       // console.log('type : number');
       // console.log(this.rangeFrom);
       // console.log(this.rangeTo);
-      // this.json.rangeFrom = this.rangeFrom;
+      this.json.rangeFrom = this.rangeFrom;
       this.json.rangeTo = this.rangeTo;
       this.json.value = this.value;
     }

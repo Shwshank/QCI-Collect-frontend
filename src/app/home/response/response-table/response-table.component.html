@@ -76,7 +76,7 @@
                   <!-- Latitude: {{temp.value.lat}} <br>
                   Longitude: {{temp.value.lat}} <br>
                   Accuracy: {{temp.value.acc}} -->
-                  <img [src]= getGoogleMap(temp.value.lat,temp.value.lng) alt="" (click)='locationModal(temp.value)'>
+                  <img [src]= getGoogleMap(temp.location) alt="" (click)='locationModal(temp.location)'>
                 </span>
 
               </td>
@@ -243,7 +243,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width:750px; height:700px;">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Image View</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Location View</h5>
       </div>
       <div class="modal-body text-center" style="overflow-y: auto">
         <div class="row justify-content-md-center" >
