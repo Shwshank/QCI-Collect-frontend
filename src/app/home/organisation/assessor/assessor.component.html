@@ -48,8 +48,8 @@
             <br>
             <input type="text" name="" value="" [(ngModel)]='assessorPhone' placeholder="Phone no." class="col-8 form-control mb-5" />
             <br>
-            <select [(ngModel)]="formAssociate" class="col-8 form-control mb-5" >
-              <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt.Details  >{{opt.Details.name + " " + opt.Details.project}}</option>
+            <select [(ngModel)]="formAssociate" class="col-8 form-control mb-5" (change)='getVal()'>
+              <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt.Details  >{{opt.Details.name + " - " + opt.Details.project}}</option>
             </select>
           </div>
       </div>

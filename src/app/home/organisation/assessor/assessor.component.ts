@@ -39,6 +39,7 @@ export class AssessorComponent implements OnInit {
 
     this.sub1 = this.projectService.emitFormArray.subscribe(res=>{
       this.formArray = res;
+      console.log(res);
     });
   }
 
@@ -69,17 +70,22 @@ export class AssessorComponent implements OnInit {
 
   assesor() {
     this.projectService.getFormArray();
+    console.log(this.formArray);
     $("#newAssessorModal").modal('show');
   }
 
+  getVal() {
+    console.log(this.formAssociate);
+  }
+
   saveAssessor() {
-    // console.log(this.formAssociate);
+    console.log(this.assessorName+" "+ this.assessorPhone+" "+ this.formAssociate);
     this.projectService.addAssessorArray(this.assessorName, this.assessorPhone, this.formAssociate);
     this.assessorName = '';
     this.assessorPhone = '';
     $("#newAssessorModal").modal('hide');
     this.router.navigate(['/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
-    this.formAssociate = "";
+    // this.formAssociate = "";
     this.formArray=[];
   }
 
