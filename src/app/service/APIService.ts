@@ -4,9 +4,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  // projectURL: string = 'http://192.168.15.187:8000';
+  projectURL: string = 'http://192.168.15.187:8000';
   responseSocketURL: string = 'ws://192.168.15.187:8000';
-  projectURL: string = 'https://qcitech.org:8083';
+  // projectURL: string = 'https://qcitech.org:8083';
 
   userID : any = "";
 
@@ -115,6 +115,7 @@ export class APIService {
   }
 
   AddAssesorArray(asrArray: any) {
+    // console.log(asrArray);
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
 

@@ -11,8 +11,8 @@ IMAGENAME="qci-collect-front"
 REPONAME="collect-frontend-pipeline"
 
 mv /var/lib/jenkins/workspace/collect-frontend-pipeline/dist /var/lib/jenkins/workspace/collect-frontend/
-#docker stop $DOCKERNAME
-#docker rm $DOCKERNAME
-#docker rmi $IMAGENAME
+docker stop $DOCKERNAME
+docker rm $DOCKERNAME
+docker rmi $IMAGENAME
 docker build -t $IMAGENAME /var/lib/jenkins/workspace/collect-frontend/.
 docker run -dt --name $DOCKERNAME $IMAGENAME

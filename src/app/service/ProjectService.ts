@@ -131,9 +131,13 @@ export class ProjectService {
         this.emitUserLogin.emit("Invalid credentials!");
       } else {
         this.emitErrorRes.emit();
+        window.location.reload(true);
+        alert('Invalid credentials!');
       }
     }, err=>{
       console.log(err);
+      window.location.reload(true);
+      alert('Invalid credentials!');
     });
   }
 
@@ -403,7 +407,7 @@ export class ProjectService {
     }
     let tempArray = {cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'};
     this.apiService.AddAssesorArray(tempArray).subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}

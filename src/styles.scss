@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/scss/_variables.scss";
+// @import "~bootstrap/scss/_functions.scss";
 
 /*transitions mixins*/
 @mixin transition($transition...) { -moz-transition:$transition; -o-transition:$transition; -webkit-transition:$transition; transition:$transition; }
@@ -42,7 +42,9 @@ $col-9:75%;
 $col-10:83.33%;
 $col-11:91.67%;
 $col-12:100%;
-
+.pt-5, .py-5 {
+    padding-top: 2rem!important;
+}
 $float-left:float-left;
 
 $bt-light:1px solid #ddd;
@@ -53,7 +55,8 @@ $bb-light:1px solid #ddd;
 $top-menu-height:47px;
 
 body{
-  font-size: 600 !important
+  font-size: .9rem !important;
+  font-weight:500;
 }
 
 button{
@@ -218,6 +221,7 @@ body
 }
  .btn-secondary{
   color: $text-color-darkset3 !important;
+  background-color: #c0c5ca;
 }
 .cbx
 {
@@ -572,6 +576,7 @@ table.dataTable thead th,
 .modal-content
 {
   border-radius:0 0 0.3rem 0.3rem;
+  background-color: #fff0 ;
 }
 .modal-header
 {
@@ -594,6 +599,7 @@ table.dataTable thead th,
   box-shadow:-3px -15px 20px -20px #999;
   border:none;
   z-index: 99;
+  background-color: white;
 }
 .modal-body input
 {
