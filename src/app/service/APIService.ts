@@ -5,7 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class APIService {
 
   // projectURL: string = 'http://192.168.15.187:8000';
-  responseSocketURL: string = 'ws://192.168.15.187:8000';
+  responseSocketURL: string = '';
   projectURL: string = 'https://qcitech.org:8083';
 
   userID : any = "";
@@ -20,6 +20,16 @@ export class APIService {
 
   Login(data) {
     return this.http.post(this.projectURL+'/login', data).map(res=>res.json());
+  }
+
+  UpdatePassword(oldpwd, newpwd) {
+    let formData = new FormData();
+    formData.append('oldpwd', oldpwd);
+    formData.append('newpwd', newpwd);
+
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/changePassword', formData,{headers: headers}).map(res=>res.json());
   }
 
   SyncAll(formArray: any, tempArray: any) {

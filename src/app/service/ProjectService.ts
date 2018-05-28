@@ -150,6 +150,22 @@ export class ProjectService {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['./login']);
+    window.location.reload(true);
+  }
+
+  updatePassword(oldpwd, newpwd) {
+    this.apiService.UpdatePassword(oldpwd, newpwd).subscribe(res=>{
+        if(res.success) {
+          console.log(res);
+          // this.emitSuccessRes.emit(res.message);
+          alert('Password Changed!');
+          this.logout();
+        } else {
+          alert(res.message);
+        }
+      }, err=>{
+        console.log(err);
+      })
   }
 
   uploadCollectForm(form) {

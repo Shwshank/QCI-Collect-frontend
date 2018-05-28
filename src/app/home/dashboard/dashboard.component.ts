@@ -15,6 +15,11 @@ export class DashboardComponent implements OnInit {
   sub2: any;
   sub3: any;
   sub4: any;
+  oldPwd: any;
+  newPwd1: any;
+  newPwd2: any;
+  errorFlag: any = false;
+  userName: any = '';
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private projectService: ProjectService ) {
      this.toastr.setRootViewContainerRef(vcr);
 
@@ -35,12 +40,28 @@ export class DashboardComponent implements OnInit {
      });
   }
 
+  updatePassword() {
+    if(!this.errorFlag) {
+      this.checkNewPassword();
+      this.projectService.updatePassword(this.oldPwd, this.newPwd1);
+    }
+  }
+
+  checkNewPassword(){
+    if(this.newPwd1 === this.newPwd2) {
+      this.errorFlag = false;
+    } else {
+      this.errorFlag = true;
+    }
+  }
+
   navClick(pos){
     console.log(pos);
   }
 
   ngOnInit() {
     // this.showCustom();
+    this.userName = localStorage.getItem('userEmail');
   }
 
   showSuccess(res) {
