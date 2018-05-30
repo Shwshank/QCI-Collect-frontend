@@ -128,16 +128,16 @@ export class ProjectService {
       console.log(res);
       if(res.success){
         localStorage.setItem('token',res.token);
-        this.emitUserLogin.emit("Invalid credentials!");
+        this.emitUserLogin.emit("Invalid credentials!!");
       } else {
         this.emitErrorRes.emit();
         window.location.reload(true);
-        alert('Invalid credentials!');
+        alert(res.message);
       }
     }, err=>{
       console.log(err);
       window.location.reload(true);
-      alert('Invalid credentials!');
+      alert('Invalid credentials!!');
     });
   }
 

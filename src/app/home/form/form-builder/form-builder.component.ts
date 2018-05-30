@@ -42,6 +42,7 @@ export class FormBuilderComponent implements OnInit {
   sub8:any;
   sub9:any;
   updateForm: any = false;
+  newForm: any = false;
 
   constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute , private router: Router) {
 
@@ -145,6 +146,17 @@ export class FormBuilderComponent implements OnInit {
   }
 
   ngOnInit () {
+
+    let newform = localStorage.getItem('newForm');
+    if(newform == 'true') {
+      this.newForm = true;
+      localStorage.removeItem('newForm');
+      // console.log('h1');
+    } else {
+      this.newForm = false;
+      localStorage.removeItem('newForm');
+      // console.log('h2');
+    }
 
     this.sub = this.activatedRoute.queryParams.subscribe(params=>{
         this.formID = params.formID;

@@ -53,6 +53,7 @@ export class FormComponent implements OnInit {
 
   new() {
     this.router.navigate(['/formBuilder']);
+    localStorage.setItem('newForm', 'true');
   }
 
   ngOnInit() {
