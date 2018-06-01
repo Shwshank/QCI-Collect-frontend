@@ -43,38 +43,41 @@
       <li class="nav-item p-1 pos-bl text-center">@2018, Quality Quancil of India | All Rights Reserved</li>
     </ul>
   </div>
-  <div class="col-lg-10 col-sm-12 wrap-cont" style="padding-bottom:70px">
+  <div class="col-lg-10 col-sm-12 wrap-cont" >
+    <div style="height:95vh !important; overflow-y:auto; padding-right:20px">
       <router-outlet></router-outlet>
-      <div class="modal fade" id="userprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">User Profile - {{userName}}</h5>
-            </div>
-            <div class="modal-body text-center">
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-5 text-left pt-2 pl-0">Old Password:</span>
-                <input type="password" name="" value="" class="col-7 form-control"  [(ngModel)]='oldPwd' />
-              </label>
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-5 text-left pt-2 pl-0">New Password:</span>
-                <input type="password" name="" value="" class="col-7 form-control"  [(ngModel)]='newPwd1'/>
-              </label>
-              <label class="row ml-0 mr-0 mb-3">
-                 <span class="col-5 text-left pt-2 pl-0">Match New Password:</span>
-                 <input type="password" name="" value="" class="col-7 form-control" [(ngModel)]='newPwd2' (change)="checkNewPassword()"/>
-              </label>
-              <span *ngIf="errorFlag">
-                <p style="color: red" >* New password doesn't match</p>
-              </span>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" (click)="updatePassword()" >Update password</button>
-              <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
-              <i class="fa fa-sign-out fa-6 ml-5 text-right text-danger" style="margin-top:-10px;" aria-hidden="true" (click)="logout()" ></i>
-            </div>
-          </div>
-        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="userprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">User Profile - {{userName}}</h5>
       </div>
+      <div class="modal-body text-center">
+        <label class="row ml-0 mr-0 mb-3">
+          <span class="col-5 text-left pt-2 pl-0">Old Password:</span>
+          <input type="password" name="" value="" class="col-7 form-control"  [(ngModel)]='oldPwd' />
+        </label>
+        <label class="row ml-0 mr-0 mb-3">
+          <span class="col-5 text-left pt-2 pl-0">New Password:</span>
+          <input type="password" name="" value="" class="col-7 form-control"  [(ngModel)]='newPwd1'/>
+        </label>
+        <label class="row ml-0 mr-0 mb-3">
+           <span class="col-5 text-left pt-2 pl-0">Match New Password:</span>
+           <input type="password" name="" value="" class="col-7 form-control" [(ngModel)]='newPwd2' (change)="checkNewPassword()"/>
+        </label>
+        <span *ngIf="errorFlag">
+          <p style="color: red" >* New password doesn't match</p>
+        </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" (click)="updatePassword()" >Update password</button>
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <i class="fa fa-sign-out fa-6 ml-5 text-right text-danger" style="margin-top:-10px;" aria-hidden="true" (click)="logout()" ></i>
+      </div>
+    </div>
   </div>
 </div>
