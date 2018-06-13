@@ -2,17 +2,17 @@
 
 TIMESTAMP=`TZ=IST-5:30 date +%F-%H%M`
 
-GITHUB_LINK="https://github.com/Shwshank/QCI-Collect-frontend.git"
+GITHUB_LINK="https://My-Token-For-Cloning:Ni_gyxWTFHEXPSRhWqNb@gitlab.com/itcellqci/qcicollect.git"
 
 DOCKERNAME="Collect-Frontend"
 
 IMAGENAME="qci-collect-front"
 
-REPONAME="collect-frontend-pipeline"
+REPONAME="qcicollect"
 
 rm -rf /var/lib/jenkins/workspace/collect-frontend/dist/
 mv /var/lib/jenkins/workspace/collect-frontend-pipeline/dist /var/lib/jenkins/workspace/collect-frontend/
-rm -rf $REPONAME
+#rm -rf $REPONAME
 docker stop $DOCKERNAME
 docker rm $DOCKERNAME
 docker rmi $IMAGENAME

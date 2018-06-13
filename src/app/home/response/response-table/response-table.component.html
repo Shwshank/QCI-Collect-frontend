@@ -23,7 +23,15 @@
     <br>
   </div>
 
+
   <div class="" style=" width:100%;   overflow-x: auto">
+
+    <div *ngIf='flag'>
+      {{getCount(currentCount,0,1)}} - {{start}} of {{totalCount}}
+      <button type="button" class="btn btn-primary" *ngIf="currentCount > 0" (click)="paginationLoadData(-10)">  <  </button>
+      <button type="button" class="btn btn-primary"  *ngIf="(currentCount+10) < totalCount" (click)="paginationLoadData(10)">  >  </button>
+    </div>
+
     <table *ngIf='flag' id="exampleFormResponse" class=" display table table-striped  table-responsive-md" cellspacing="0" >
       <thead>
           <tr>
@@ -45,7 +53,7 @@
       </tfoot>
       <tbody>
         <tr *ngFor='let res of response; let i = index'>
-              <td>{{i+1}}</td>
+              <td>{{getCount(currentCount,i,1)}}.</td>
               <td>
                 <button type="button" class="btn btn-primary" (click)='getDetails(i,res)' >  Details  </button>
               </td>

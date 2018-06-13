@@ -52,7 +52,7 @@ export class ResponseComponent implements OnInit {
   }
 
   getData(data) {
-    this.router.navigate(['/resTable'], { queryParams: { id: data } });
+    this.router.navigate(['/resTable'], { queryParams: { id: data, count: 0 } });
   }
 
   resMoreThanZero(res) {

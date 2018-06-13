@@ -7,6 +7,7 @@ export class APIService {
   // projectURL: string = 'http://192.168.15.187:8000';
   responseSocketURL: string = '';
   projectURL: string = 'https://qcitech.org:8083';
+  // projectURL: string = 'https://api-collect.qcitech.org';
 
   userID : any = "";
 
@@ -179,12 +180,13 @@ export class APIService {
     return this.http.get(this.projectURL+'/getResponseSummary', {headers: headers}).map(res=>res.json());
   }
 
-  GetFormResponse(formID) {
+  GetFormResponse(formID, count) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
 
     let fID = new FormData();
     fID.append('formID',formID);
+    fID.append('start',count);
 
     return this.http.post(this.projectURL+'/getFormResponse',fID, {headers: headers}).map(res=>res.json());
   }

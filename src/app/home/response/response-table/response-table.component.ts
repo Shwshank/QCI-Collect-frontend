@@ -15,6 +15,7 @@ export class ResponseTableComponent implements OnInit {
 
   sub : any;
   sub1 : any;
+  sub2 : any;
   formId: any;
   response: any=[];
   header: any=[];
@@ -37,18 +38,18 @@ export class ResponseTableComponent implements OnInit {
   imgLocation: any={lat:'', lng:'', acc:''};
   imgFilename: any;
   iLocation: any={lat:'', lng:'', acc:''};
+  currentCount : any;
+  nextCount : any;
+  previousCount : any;
+  totalCount :any;
+  fname : any;
+  start : any;
 
-  constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer) {
+  constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer,  private router: Router) {
 
     this.sub = this.projectService.emitFormResponse.subscribe(res=>{
       console.log(res);
       this.response = res;
-
-      // this.projectService.sendSocketMessage('form');
-
-      // this.projectService.connectSocket(this.formId);
-      // this.projectService.openSocket();
-      // this.projectService.messageSocket();
 
     });
 
@@ -61,6 +62,11 @@ export class ResponseTableComponent implements OnInit {
       this.display();
     });
 
+    this.sub2 = this.projectService.emitResponseTableMetaData.subscribe(res=>{
+      this.fname = res.formName;
+      this.start = res.start;
+      this.totalCount = res.total;
+    })
 
     // this.mapSrc = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDckRiiAGkAOBQlq3nKOls1MGgFtbVLKxs="+this.lat+","+this.lng+"";
     this.mapSrc = "https://maps.googleapis.com/maps/api/staticmap?center="+this.lat+","+this.lng+"&markers=color:red|"+this.lat+","+this.lng+"&zoom=12&size=800x1000";
@@ -70,8 +76,24 @@ export class ResponseTableComponent implements OnInit {
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe(params=>{
         this.formId = params.id;
-        this.projectService.getFormResponseArray(this.formId);
+        this.currentCount = params.count;
+        this.projectService.getFormResponseArray(this.formId, this.currentCount);
     });
+  }
+
+  paginationLoadData(amount) {
+    this.flag = false;
+    let count = this.currentCount;
+    count = parseInt(count) + parseInt(amount);
+    // this.projectService.getFormResponseArray(this.formId, count);
+    this.router.navigate(['/resTable'], { queryParams: { id: this.formId, count: count } });
+    this.flag = false;
+    window.location.reload();
+  }
+
+  getCount(i,j,k){
+    let sum = parseInt(i) + parseInt(j) + parseInt(k);
+    return sum
   }
 
   getGoogleMap(location) {
@@ -120,8 +142,10 @@ export class ResponseTableComponent implements OnInit {
           responsive: true,
           dom: 'lBfrtip',
           buttons: [
-              'csv', 'pdf',
-          ]
+              'csv'
+          ],
+
+
         });
 
         var table = $('#exampleFormResponse').DataTable();
@@ -255,6 +279,7 @@ export class ResponseTableComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
   verifyTag() {

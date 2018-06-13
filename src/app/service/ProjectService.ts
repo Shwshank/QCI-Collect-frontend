@@ -101,6 +101,7 @@ export class ProjectService {
   emitTeams = new EventEmitter<any>();
   emitConfirmUpdateForm = new EventEmitter<any>();
   emitProjectData = new EventEmitter<any>();
+  emitResponseTableMetaData = new EventEmitter<any>();
 
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
@@ -747,12 +748,12 @@ export class ProjectService {
     });
   }
 
-  getFormResponseArray(formId) {
+  getFormResponseArray(formId, count) {
     let formResponse = [];
     let tableHeader = [];
     let finalResponse= [];
 
-    this.apiService.GetFormResponse(formId).subscribe(res=> {
+    this.apiService.GetFormResponse(formId, count).subscribe(res=> {
       console.log(res);
       if(res){
         if(res.header.length) {
@@ -768,6 +769,7 @@ export class ProjectService {
         }
         this.emitFormResponse.emit(formResponse);
         this.emitTableHeader.emit(tableHeader);
+        this.emitResponseTableMetaData.emit({formName:res.fname, start: res.start, total: res.total});
       } else {}
     },err=> {
       console.log(err);
