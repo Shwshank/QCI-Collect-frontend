@@ -142,7 +142,7 @@ export class FormModalComponent implements OnInit {
     this.json.name =  this.name;
     this.json.value = "";
     let now = new Date();
-    this.json.cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
+    this.json.cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000)+'s';
 
     if(this.json.type === "number" || this.json.type === "date" || this.json.type === "time"  || this.json.type === "slider") {
       // console.log('type : number');

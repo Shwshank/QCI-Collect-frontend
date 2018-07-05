@@ -71,7 +71,7 @@
 
                 </span>
 
-                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='imageModal(temp.value,temp.location,temp.fileName)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.thumbnail'  class="responseImg" src={{temp.thumbnail}} (click)='imageModal(temp.thumbnail,temp.location,temp.fileName)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
                 <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 
@@ -125,7 +125,7 @@
 
                 </span>
 
-              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value,temp.location,temp.fileName)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.thumbnail}} (click)='imageModal(temp.thumbnail,temp.location,temp.fileName)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
               <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 

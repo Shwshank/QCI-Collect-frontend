@@ -60,7 +60,7 @@ export class ProjectService {
   cid() {
     let d = new Date();
     let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 8999);
-    return cid;
+    return cid+'s';
   }
 
   cdate() {

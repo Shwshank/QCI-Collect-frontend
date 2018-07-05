@@ -4,9 +4,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  // projectURL: string = 'http://192.168.15.187:8000';
+  projectURL: string = 'http://192.168.15.187:8000';
   responseSocketURL: string = '';
-  projectURL: string = 'https://qcitech.org:8083';
+  // projectURL: string = 'https://qcitech.org:8083';
   // projectURL: string = 'https://api-collect.qcitech.org';
 
   userID : any = "";
@@ -14,9 +14,10 @@ export class APIService {
   constructor( private http: Http) {}
 
   createAuthorizationHeader(headers: Headers) {
+    let d = new Date();
     this.userID = localStorage.getItem('token');
-    // this.userID = "319424f5b8524ebe8188c2d40217c48c";
     headers.append('Authorization', this.userID);
+    headers.append('Time',''+d.getTime() );
   }
 
   Login(data) {
